@@ -13,21 +13,21 @@ public class WeatherData implements Serializable {
 	/** 【U16】包序列号,发完一包累加1 */
 	private int seq;
 	/** 【S32】经度，实际值= Longitude/10000000,单位 deg */
-	private double Longitude;
+	private double longitude;
 	/** 【S32】纬度，实际值= Latitude /10000000,单位 deg */
-	private double Latitude;
+	private double latitude;
 	/** 【U8】卫星数 */
-	private int Satellite;
+	private int satellite;
 	/** 【U16】风速，实际值= WindSpeed/10.0f,单位 m/s */
-	private float WindSpeed;
-	/** 【U16】风速，实际值= WindDirection /10.0f,单位：deg */
-	private float WindDirection;
+	private float windSpeed;
+	/** 【U16】风向，实际值= WindDirection /10.0f,单位：deg */
+	private float windDirection;
 	/** 【S16】温度，实际值= Temperature /10.0f,单位：C */
-	private float Temperature;
+	private float temperature;
 	/** 【U16】湿度，实际值= Humidity /10.0f,单位：% */
-	private float Humidity;
+	private float humidity;
 	/** 【U16】光照，实际值= Light /10.0f,单位：lux */
-	private float Light;
+	private float light;
 	/** 【U16】雨量，0-无雨，1-有雨 */
 	private boolean isRain;
 

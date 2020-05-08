@@ -12,14 +12,17 @@ public class TextData implements Serializable {
 	/** 【U16】包序列号,发完一包累加 1 */
 	private int seq;
 	/** 【S8】在界面文本框内显示 */
-	private int text;
+	private byte[] text;
 
 	public static TextData parse(ProtocolRequest request) {
 		byte[] data = request.getBuff();
 
 		TextData obj = new TextData();
 		obj.setSeq(NumericUtil.getUnSigned16(new byte[]{data[0], data[1]}, true));
-		obj.setText(data[2]);
+
+		byte[] text = new byte[request.getPkgLength() - 22];
+		System.arraycopy(data, 19, text, 0, text.length);
+		obj.setText(text);
 		return obj;
 	}
 }
