@@ -2,8 +2,11 @@ package com.utrons.dronehangarserver.model.response;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class ResponseHelper<T> {
+public class ResponseHelper<T> implements Serializable {
+	private static final long serialVersionUID = 3321576411473578184L;
 	private static final String CODE_SUCCESS = "0";
 	private String code;
 	private String message;

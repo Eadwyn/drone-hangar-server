@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Data
 public class TextData implements Serializable {
 
+	private static final long serialVersionUID = -469277690493399865L;
 	/** 【U16】包序列号,发完一包累加 1 */
 	private int seq;
 	/** 【S8】在界面文本框内显示 */

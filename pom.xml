@@ -44,8 +44,51 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>com.github.wvengen</groupId>
+				<artifactId>proguard-maven-plugin</artifactId>
+				<version>2.2.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>proguard</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<proguardVersion>6.2.2</proguardVersion>
+					<injar>${project.build.finalName}.jar</injar>
+					<outjar>${project.build.finalName}.jar</outjar>
+					<obfuscate>true</obfuscate>
+					<proguardInclude>${project.basedir}/proguard-rules.pro</proguardInclude>
+					<libs>
+						<!-- Include main JAVA library required.-->
+						<lib>${java.home}/lib/rt.jar</lib>
+						<!-- Include crypto JAVA library if necessary.-->
+						<lib>${java.home}/lib/jce.jar</lib>
+					</libs>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>net.sf.proguard</groupId>
+						<artifactId>proguard-base</artifactId>
+						<version>6.2.2</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<mainClass>com.utrons.dronehangarserver.MainApplication</mainClass>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

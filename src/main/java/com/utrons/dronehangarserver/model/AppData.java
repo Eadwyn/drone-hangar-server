@@ -1,5 +1,7 @@
 package com.utrons.dronehangarserver.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.utrons.dronehangarserver.comm.protocol.data.*;
@@ -94,6 +96,9 @@ public class AppData {
 
 	//region setters
 	private static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+	static {
+		OBJECT_MAPPER.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+	}
 
 	public void setFlightData(FlightData flightData) {
 		this.flightData = flightData;
@@ -112,7 +117,7 @@ public class AppData {
 
 	private void log(Object obj) {
 		try {
-			log.info("接收到数据:" + OBJECT_MAPPER.writeValueAsString(obj));
+			log.debug("接收到数据:" + OBJECT_MAPPER.writeValueAsString(obj));
 		} catch (JsonProcessingException e) {
 			log.error("JSON转换失败", e);
 		}

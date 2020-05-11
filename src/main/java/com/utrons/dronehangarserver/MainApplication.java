@@ -4,14 +4,27 @@ import com.utrons.dronehangarserver.comm.TCPClientHelper;
 import com.utrons.dronehangarserver.thread.CommReceivedHandlerThread;
 import com.utrons.dronehangarserver.thread.CommReceiverThread;
 import com.utrons.dronehangarserver.thread.CommSenderThread;
-import org.springframework.boot.SpringApplication;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.BeanNameGenerator;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
 public class MainApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(MainApplication.class, args);
+		new SpringApplicationBuilder(MainApplication.class)
+				.beanNameGenerator(new CustomGenerator())
+				.run(args);
+//		SpringApplication.run(MainApplication.class, args);
 		init();
+	}
+
+	public static class CustomGenerator implements BeanNameGenerator {
+		@Override
+		public String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry) {
+			return definition.getBeanClassName();
+		}
 	}
 
 	private static void init() {

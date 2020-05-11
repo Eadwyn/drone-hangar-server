@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class GetAllDataResponse implements Serializable {
+	private static final long serialVersionUID = -7113051933173438704L;
 	private FlightData flightData;
 	private HangarData hangarData;
 	private WeatherData weatherData;

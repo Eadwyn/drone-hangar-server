@@ -14,6 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProtocolFrame implements Serializable, Cloneable {
+    private static final long serialVersionUID = -632475364129166928L;
     public static final int MAX_BUFF_SIZE = 275;
 
     //region 协议包内容

@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @Data
 public class WayPointData implements Serializable {
+	private static final long serialVersionUID = -4376365165862229636L;
 
 	//region 属性
 	/** 【U16】航点序号 0~n-1 */

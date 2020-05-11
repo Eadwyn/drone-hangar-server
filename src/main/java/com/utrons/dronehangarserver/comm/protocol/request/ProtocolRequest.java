@@ -3,6 +3,7 @@ package com.utrons.dronehangarserver.comm.protocol.request;
 import com.utrons.dronehangarserver.comm.protocol.model.ProtocolFrame;
 
 public class ProtocolRequest extends ProtocolFrame {
+	private static final long serialVersionUID = -3077021370542917714L;
 
 //    public static ProtocolRequest build(byte pkgSeq, int uintCommand, byte[] pkgPayload) {
 //        ProtocolRequest obj = new ProtocolRequest();

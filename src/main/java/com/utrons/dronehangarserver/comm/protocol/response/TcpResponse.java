@@ -5,6 +5,8 @@ import com.utrons.dronehangarserver.util.NumericUtil;
 
 public class TcpResponse extends ProtocolFrame {
 
+	private static final long serialVersionUID = -7644251085476687831L;
+
 	/**
 	 * @param pkgSeq      包序列号
 	 * @param uintCommand 命令字

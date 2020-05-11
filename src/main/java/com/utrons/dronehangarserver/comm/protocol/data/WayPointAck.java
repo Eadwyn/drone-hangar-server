@@ -13,6 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class WayPointAck implements Serializable {
 
+	private static final long serialVersionUID = 4689458441764115153L;
 	/** 【U16】包序列号,发完一包累加 1 */
 	private int seq;
 	/** 【U16】航线包含的航点数 */
