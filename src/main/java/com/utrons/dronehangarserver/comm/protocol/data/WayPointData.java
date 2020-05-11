@@ -31,7 +31,7 @@ public class WayPointData implements Serializable {
 	//endregion
 
 	public static WayPointData parse(ProtocolRequest request) {
-		byte[] data = request.getBuff();
+		byte[] data = request.getPkgPayload();
 
 		WayPointData obj = new WayPointData();
 		obj.setSeq(NumericUtil.getUnSigned16(new byte[]{data[0], data[1]}, true));

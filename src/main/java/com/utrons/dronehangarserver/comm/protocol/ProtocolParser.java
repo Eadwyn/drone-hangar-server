@@ -4,6 +4,7 @@ import com.utrons.dronehangarserver.comm.protocol.data.*;
 import com.utrons.dronehangarserver.comm.protocol.model.ProtocolCommand;
 import com.utrons.dronehangarserver.comm.protocol.request.ProtocolRequest;
 import com.utrons.dronehangarserver.model.AppData;
+import com.utrons.dronehangarserver.service.AircraftService;
 import com.utrons.dronehangarserver.util.NumericUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -99,6 +100,10 @@ public class ProtocolParser {
 	}
 
 	private static void handle_WEB_WAYLINE_CMD(ProtocolRequest request) {
+		WayPointAck wayPointAck = WayPointAck.parse(request);
+		AppData.getInstance().clearWayPointData();
+		AppData.getInstance().setTotalWayPoints(wayPointAck.getTotal());
+		AircraftService.startReadWayPoint(wayPointAck.getTotal());
 	}
 
 	private static void handle_WEB_FLIGHT_CMD(ProtocolRequest request) {
@@ -125,7 +130,7 @@ public class ProtocolParser {
 	}
 
 	private static void handle_WEB_TEXT_DATA(ProtocolRequest request) {
-		AppData.getInstance().setTextData(TextData.parse(request));
+		AppData.getInstance().addTextData(TextData.parse(request));
 	}
 
 	private static void handle_WEB_FLIGHT_DATA(ProtocolRequest request) {
@@ -141,7 +146,7 @@ public class ProtocolParser {
 	}
 
 	private static void handle_WEB_WAYPOINT_DATA(ProtocolRequest request) {
-		AppData.getInstance().setWayPointData(WayPointData.parse(request));
+		AppData.getInstance().addWayPointData(WayPointData.parse(request));
 	}
 	//endregion
 	//endregion

@@ -42,7 +42,7 @@ public class HangarData implements Serializable {
 	private boolean isDriverPowerOn;
 
 	public static HangarData parse(ProtocolRequest request) {
-		byte[] data = request.getBuff();
+		byte[] data = request.getPkgPayload();
 
 		HangarData obj = new HangarData();
 		obj.setSeq(NumericUtil.getUnSigned16(new byte[]{data[0], data[1]}, true));

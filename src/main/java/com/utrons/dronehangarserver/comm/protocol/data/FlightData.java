@@ -83,7 +83,7 @@ public class FlightData implements Serializable {
 	//endregion
 
 	public static FlightData parse(ProtocolRequest request) {
-		byte[] data = request.getBuff();
+		byte[] data = request.getPkgPayload();
 
 		FlightData obj = new FlightData();
 		obj.setSeq(NumericUtil.getUnSigned16(new byte[]{data[0], data[1]}, true));

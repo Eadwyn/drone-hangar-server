@@ -14,6 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProtocolFrame implements Serializable, Cloneable {
+    public static final int MAX_BUFF_SIZE = 275;
 
     //region 协议包内容
     /** 起始位 */
@@ -21,9 +22,9 @@ public class ProtocolFrame implements Serializable, Cloneable {
     /** 数据域长度 */
     protected byte pkgLength;
     /** 账号 */
-    protected byte username;
+    protected byte[] username;
     /** 密码 */
-    protected byte password;
+    protected byte[] password;
     /** 帧序号 */
     protected byte pkgSeq;
     /** 系统号 */
@@ -40,7 +41,7 @@ public class ProtocolFrame implements Serializable, Cloneable {
     /** 数据包：状态机 */
     protected int state = 0;
     /** 数据包：缓存：保存整包数据信息。一包有效协议长度=20 + 数据域长度，数据域为1字节，即255，故这里定义长度=20 + 255 = 275 */
-    protected byte[] buff = new byte[275];
+    protected byte[] buff = new byte[MAX_BUFF_SIZE];
     /** 数据包：有效长度 */
     protected int count = 0;
     /** 数据包：长度 */
@@ -113,8 +114,12 @@ public class ProtocolFrame implements Serializable, Cloneable {
      * @return
      */
     public static int calChecksum(byte[] data, int len) {
+        return calChecksum(data, 0, len);
+    }
+
+    public static int calChecksum(byte[] data, int start, int end) {
         int sum = 0;
-        for (int i = 1; i < len; i++) {
+        for (int i = start; i < end; i++) {
             sum += NumericUtil.getUnSigned8(data[i]);
         }
         return sum;
@@ -141,5 +146,11 @@ public class ProtocolFrame implements Serializable, Cloneable {
         obj.uintCommand = this.uintCommand;
         obj.uintChecksum = this.uintChecksum;
         return obj;
+    }
+
+    public static void main(String[] args) {
+        byte[] data = new byte[] {(byte)0xB2, (byte)0x04, (byte)0x61, (byte)0x61, (byte)0x61, (byte)0x61, (byte)0x61, (byte)0x61, (byte)0x31, (byte)0x31, (byte)0x31, (byte)0x31, (byte)0x31, (byte)0x31, (byte)0x00, (byte)0x00, (byte)0x08, (byte)0x08, (byte)0x00, (byte)0x00, (byte)0x01, (byte)0x00, (byte)0x81, (byte)0x03};
+        System.out.println(calChecksum(data, 1, data.length - 2));
+
     }
 }

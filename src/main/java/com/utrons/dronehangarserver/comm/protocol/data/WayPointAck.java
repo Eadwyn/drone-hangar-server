@@ -2,27 +2,28 @@ package com.utrons.dronehangarserver.comm.protocol.data;
 
 import com.utrons.dronehangarserver.comm.protocol.request.ProtocolRequest;
 import com.utrons.dronehangarserver.util.NumericUtil;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
-public class TextData implements Serializable {
+@NoArgsConstructor
+@AllArgsConstructor
+public class WayPointAck implements Serializable {
 
 	/** 【U16】包序列号,发完一包累加 1 */
 	private int seq;
-	/** 【S8】在界面文本框内显示 */
-	private String text;
+	/** 【U16】航线包含的航点数 */
+	private int total;
 
-	public static TextData parse(ProtocolRequest request) {
+	public static WayPointAck parse(ProtocolRequest request) {
 		byte[] data = request.getPkgPayload();
 
-		TextData obj = new TextData();
+		WayPointAck obj = new WayPointAck();
 		obj.setSeq(NumericUtil.getUnSigned16(new byte[]{data[0], data[1]}, true));
-
-		byte[] text = new byte[request.getPkgLength() - 22];
-		System.arraycopy(data, 19, text, 0, text.length);
-		obj.setText(new String(text));
+		obj.setTotal(NumericUtil.getUnSigned16(new byte[]{data[2], data[3]}, true));
 		return obj;
 	}
 }
