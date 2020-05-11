@@ -109,7 +109,7 @@ public class AircraftService {
 		AppData.getInstance().clearWayPointData();
 		CommData.send(response.getBuff()); // 加入发送队列
 
-		System.out.println("加载航线： " +NumericUtil.bytesToHexStringWithBlank(response.getBuff()));
+		System.out.println("加载航线： " + NumericUtil.bytesToHexStringWithBlank(response.getBuff()));
 		sendSeqCounter++;
 		loadWayPointSubSeq++;
 	}
@@ -117,6 +117,7 @@ public class AircraftService {
 
 	//region 读取航点
 	private static ReadWayPointThread readWayPointThread;
+
 	public static void startReadWayPoint(int total) {
 		if (null != readWayPointThread) {
 			readWayPointThread.stopThread();
@@ -156,7 +157,7 @@ public class AircraftService {
 
 			AppData.getInstance().clearWayPointData();
 			CommData.send(response.getBuff()); // 加入发送队列
-System.out.println("读取航点： " +NumericUtil.bytesToHexStringWithBlank(response.getBuff()));
+			System.out.println("读取航点： " + NumericUtil.bytesToHexStringWithBlank(response.getBuff()));
 			sendSeqCounter++;
 			readWayPointSubSeq++;
 		}
