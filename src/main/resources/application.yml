@@ -1,5 +1,8 @@
 server:
   port: 8071
+  compression:
+    enabled: true
+    mime-types: text/javascript,application/javascript,text/css
 spring:
   application:
     name: DroneHangar
@@ -10,3 +13,4 @@ logging:
   level:
     root: WARN
     com.utrons: INFO
+  path: /opt
