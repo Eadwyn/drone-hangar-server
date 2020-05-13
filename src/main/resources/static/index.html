@@ -2,15 +2,16 @@
 <html lang="cmn-Hans">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expires" content="0">
-    <title>无人机巡检系统</title><!-- <link rel="icon" href="../favicon.ico">-->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <title>无人机巡检系统</title>
+    <!-- <link rel="icon" href="../favicon.ico">-->
     <!--<link rel="stylesheet" href="../resources/modules/bootstrap/css/bootstrap.min.css">-->
-    <link href="./resources/modules/videojs/video-js.min.css" rel="stylesheet">
+    <link href="./resources/modules/videojs/video-js.min.css" rel="stylesheet" />
     <style type="text/css">
         html,
         body,
@@ -20,7 +21,7 @@
             padding: 0;
             margin: 0;
             font-size: 16px;
-            color: #FFFFFF;
+            color: #ffffff;
         }
 
         #container {
@@ -78,8 +79,8 @@
             left: 50%;
             margin-left: -250px;
             width: 500px;
-            height: 200px;
-            background-color: #3d4243;
+            height: 120px;
+            background-color: #e5e5e5;
             border-radius: 10px;
             opacity: 0.8;
             overflow: auto;
@@ -91,10 +92,10 @@
 
         #videoContainer {
             position: absolute;
-            right: 140px;
-            top: 50px;
-            width: 288px;
-            height: 162px;
+            right: 120px;
+            top: 55px;
+            width: 576px;
+            height: 324px;
             z-index: 1000;
         }
 
@@ -113,7 +114,7 @@
             background-color: #032d33;
             padding: 3px 10px;
             border: 0;
-            color: #FFFFFF;
+            color: #ffffff;
         }
 
         .controllBtn {
@@ -121,7 +122,7 @@
             display: block;
             margin-top: 5px;
             background-color: #0c7684;
-            color: #FFFFFF;
+            color: #ffffff;
             opacity: 1;
         }
 
@@ -134,17 +135,58 @@
 <body>
     <div id="container"></div>
     <div id="header">
-        <div style="display: inline-block; float: left; font-size: 24px; line-height: 40px; padding-left: 5px;">朱雀智能停机坪系统</div>
-        <div style="position: absolute; top:0; left:0; margin-left:50%; display: inline-block; clear: both; line-height: 40px;"> <span class="connection_status">未连接</span> </div>
-        <div style="display: inline-block; float: right; line-height: 40px; padding-right: 5px;"> 账号: <input type="text" id="username" name="username" maxlength="6" style="width: 80px;" /> 密码: <input type="password" id="password" name="password" maxlength="6" style="width: 80px;" /> <button type="button" id="btnLogin">登录</button> </div>
+        <div style="
+          display: inline-block;
+          float: left;
+          font-size: 24px;
+          line-height: 40px;
+          padding-left: 5px;
+        ">
+            朱雀智能停机坪系统
+        </div>
+        <div style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          margin-left: 50%;
+          display: inline-block;
+          clear: both;
+          line-height: 40px;
+        ">
+            <span class="connection_status">未连接</span>
+        </div>
+        <div style="
+          display: inline-block;
+          float: right;
+          line-height: 40px;
+          padding-right: 5px;
+        ">
+            账号:
+            <input type="text" id="username" name="username" maxlength="6" style="width: 80px;" />
+            密码:
+            <input type="password" id="password" name="password" maxlength="6" style="width: 80px;" />
+            <button type="button" id="btnLogin">登录</button>
+        </div>
     </div>
     <div id="valueContainer">
-        <div class="valuePanel">停机枰经度：<span id="hangarLongitudeValue">未知</span>deg</div>
-        <div class="valuePanel">停机枰纬度：<span id="hangarLatitudeValue">未知</span>deg</div>
-        <div class="valuePanel">卫星数：<span id="satelliteValue">未知</span></div>
-        <div class="valuePanel">风速：<span id="windSpeedValue">未知</span>m/s</div>
-        <div class="valuePanel">风向：<span id="windDirectionValue">未知</span>deg</div>
-        <div class="valuePanel">温度：<span id="temperatureValue">未知</span>℃</div>
+        <div class="valuePanel">
+            停机枰经度：<span id="hangarLongitudeValue">未知</span>deg
+        </div>
+        <div class="valuePanel">
+            停机枰纬度：<span id="hangarLatitudeValue">未知</span>deg
+        </div>
+        <div class="valuePanel">
+            卫星数：<span id="satelliteValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            风速：<span id="windSpeedValue">未知</span>m/s
+        </div>
+        <div class="valuePanel">
+            风向：<span id="windDirectionValue">未知</span>deg
+        </div>
+        <div class="valuePanel">
+            温度：<span id="temperatureValue">未知</span>℃
+        </div>
         <div class="valuePanel">湿度：<span id="humidityValue">未知</span>%</div>
         <div class="valuePanel">光照：<span id="lightValue">未知</span>lux</div>
         <div class="valuePanel">雨量：<span id="rainValue">未知</span></div>
@@ -153,64 +195,121 @@
         <div class="valuePanel">起降台：<span id="liftsValue">未知</span></div>
         <div class="valuePanel">内部灯：<span id="inLampValue">未知</span></div>
         <div class="valuePanel">外部灯：<span id="outLampValue">未知</span></div>
-        <div class="valuePanel">机坪电源：<span id="hangarPowerValue">未知</span></div>
-        <div class="valuePanel">充电电源：<span id="chargerPowerValue">未知</span></div>
-        <div class="valuePanel">射频电源：<span id="rfPowerValue">未知</span></div>
-        <div class="valuePanel">摄像头电源：<span id="cameraPowerValue">未知</span></div>
-        <div class="valuePanel">遥控电源：<span id="remotePowerValue">未知</span></div>
-        <div class="valuePanel">基站电源：<span id="rtkPowerValue">未知</span></div>
-        <div class="valuePanel">显示电源：<span id="screenPowerValue">未知</span></div>
-        <div class="valuePanel">话器电源：<span id="speakerPowerValue">未知</span></div>
-        <div class="valuePanel">伺服电源：<span id="driverPowerValue">未知</span></div>
+        <div class="valuePanel">
+            机坪电源：<span id="hangarPowerValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            充电电源：<span id="chargerPowerValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            射频电源：<span id="rfPowerValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            摄像头电源：<span id="cameraPowerValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            遥控电源：<span id="remotePowerValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            基站电源：<span id="rtkPowerValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            显示电源：<span id="screenPowerValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            话器电源：<span id="speakerPowerValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            伺服电源：<span id="driverPowerValue">未知</span>
+        </div>
         <div class="valuePanel">信号强度：<span id="rssiValue">未知</span></div>
         <div class="valuePanel">横滚：<span id="rollValue">未知</span>deg</div>
         <div class="valuePanel">俯仰：<span id="pitchValue">未知</span>deg</div>
         <div class="valuePanel">航向：<span id="yawValue">未知</span>deg</div>
         <div class="valuePanel">起飞高度：<span id="hightValue">未知</span>m</div>
-        <div class="valuePanel">飞行距离：<span id="distanceValue">未知</span>m</div>
-        <div class="valuePanel">东向速度：<span id="eastSpeedValue">未知</span>deg</div>
-        <div class="valuePanel">北向速度：<span id="northSpeedValue">未知</span>deg</div>
-        <div class="valuePanel">垂直速度：<span id="upSpeedValue">未知</span>deg</div>
-        <div class="valuePanel">定位模式：<span id="fixTypeValue">未知</span></div>
+        <div class="valuePanel">
+            飞行距离：<span id="distanceValue">未知</span>m
+        </div>
+        <div class="valuePanel">
+            东向速度：<span id="eastSpeedValue">未知</span>deg
+        </div>
+        <div class="valuePanel">
+            北向速度：<span id="northSpeedValue">未知</span>deg
+        </div>
+        <div class="valuePanel">
+            垂直速度：<span id="upSpeedValue">未知</span>deg
+        </div>
+        <div class="valuePanel">
+            定位模式：<span id="fixTypeValue">未知</span>
+        </div>
         <div class="valuePanel">电压：<span id="voltageValue">未知</span>V</div>
         <div class="valuePanel">电流：<span id="currentValue">未知</span>A</div>
-        <div class="valuePanel">电压百分比：<span id="percentageValue">未知</span>%</div>
-        <div class="valuePanel">云台航向：<span id="gimbalYawValue">未知</span>deg</div>
-        <div class="valuePanel">云台俯仰：<span id="gimbalPitchValue">未知</span>deg</div>
-        <div class="valuePanel">相机焦距：<span id="cameraFoceValue">未知</span></div>
-        <div class="valuePanel">相机状态：<span id="cameraStatusValue">未知</span></div>
-        <div class="valuePanel">飞行模式：<span id="flightModeValue">未知</span></div>
-        <div class="valuePanel">RTK连接状态：<span id="rtkConnectedValue">未知</span></div>
+        <div class="valuePanel">
+            电压百分比：<span id="percentageValue">未知</span>%
+        </div>
+        <div class="valuePanel">
+            云台航向：<span id="gimbalYawValue">未知</span>deg
+        </div>
+        <div class="valuePanel">
+            云台俯仰：<span id="gimbalPitchValue">未知</span>deg
+        </div>
+        <div class="valuePanel">
+            相机焦距：<span id="cameraFoceValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            相机状态：<span id="cameraStatusValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            飞行模式：<span id="flightModeValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            RTK连接状态：<span id="rtkConnectedValue">未知</span>
+        </div>
         <div class="valuePanel">马达状态：<span id="motorsValue">未知</span></div>
-        <div class="valuePanel">航点就绪：<span id="wayPointReadyValue">未知</span></div>
-        <div class="valuePanel">充电状态：<span id="beingChargedValue">未知</span></div>
+        <div class="valuePanel">
+            航点就绪：<span id="wayPointReadyValue">未知</span>
+        </div>
+        <div class="valuePanel">
+            充电状态：<span id="beingChargedValue">未知</span>
+        </div>
     </div>
     <div id="controllContainer">
-        <div> <select id="wayPoint">
+        <div>
+            <select id="wayPoint">
                 <option value="-1">选择航线</option>
                 <option value="1">1号航线</option>
                 <option value="2">2号航线</option>
                 <option value="3">3号航线</option>
-            </select> </div><button id="btnLoadWaypoint" class="controllBtn">加载航线</button> <button id="btnTakeOff" class="controllBtn">起飞</button> <button id="btnLanding" class="controllBtn">降落</button> <button id="btnReturn" class="controllBtn">返航</button> <button id="btnPause" class="controllBtn">暂停航线</button> <button id="btnResume" class="controllBtn">恢复航线</button> <button id="btnAuto" class="controllBtn">自动航线</button> <button id="btnCharger" class="controllBtn">自动充电</button> <button id="btnHangarStart" class="controllBtn">准备起飞</button> <button id="btnHangerStop" class="controllBtn">停止流程</button> <button id="btnHangarSleep" class="controllBtn">休眠流程</button>
+            </select>
+        </div>
+        <button id="btnLoadWaypoint" class="controllBtn">加载航线</button>
+        <button id="btnTakeOff" class="controllBtn">起飞</button>
+        <button id="btnLanding" class="controllBtn">降落</button>
+        <button id="btnReturn" class="controllBtn">返航</button>
+        <button id="btnPause" class="controllBtn">暂停航线</button>
+        <button id="btnResume" class="controllBtn">恢复航线</button>
+        <button id="btnAuto" class="controllBtn">自动航线</button>
+        <button id="btnCharger" class="controllBtn">自动充电</button>
+        <button id="btnHangarStart" class="controllBtn">准备起飞</button>
+        <button id="btnHangerStop" class="controllBtn">停止流程</button>
+        <button id="btnHangarSleep" class="controllBtn">休眠流程</button>
     </div>
     <div id="logContainer">
-        <ul>
-            <li>sdefgsdfgsd</li>
-            <li>sdefgsdfgsd</li>
-            <li>sdefgsdfgsd</li>
-        </ul>
+        <ul></ul>
     </div>
-    <div id="videoContainer"> <video id="video-player" class="video-js" muted webkit-playsinline preload="auto" data-setup='{}'>
+    <div id="videoContainer">
+        <video id="video-player" class="video-js" muted webkit-playsinline preload="auto" data-setup="{}">
             <source src="http://112.74.216.37:8080/hls/hangar2-gimbal-video.m3u8" type="application/vnd.apple.mpegurl" />
             <p class="warning">该浏览器不支持视频HTML5播放</p>
-        </video> </div>
+        </video>
+    </div>
     <script src="./resources/modules/jquery/jquery-3.5.1.min.js"></script>
     <script src="./resources/Ajax.js"></script>
     <script src="https://webapi.amap.com/loader.js"></script>
     <script src="./resources/modules/videojs/video.min.js"></script>
     <script type="text/javascript">
         var options = {};
-        var player = videojs('video-player', options, function onPlayerReady() {
+        var player = videojs("video-player", options, function onPlayerReady() {
             this.play();
         });
     </script>
@@ -219,19 +318,24 @@
         var markers = [];
         var polylines = [];
         AMapLoader.load({
-            key: 'e9033faeecc84dcbc08e0ef3b5819b57',
-            version: '2.0',
-            plugins: ['AMap.Scale']
-        }).then((AMap) => {
-            map = new AMap.Map('container', {
-                zoom: 16,
-                center: [113.5975887, 22.7541939],
-                layers: [new AMap.TileLayer.Satellite(), new AMap.TileLayer.RoadNet()]
+                key: "e9033faeecc84dcbc08e0ef3b5819b57",
+                version: "2.0",
+                plugins: ["AMap.Scale"],
+            })
+            .then((AMap) => {
+                map = new AMap.Map("container", {
+                    zoom: 16,
+                    center: [113.5975887, 22.7541939],
+                    layers: [
+                        new AMap.TileLayer.Satellite(),
+                        new AMap.TileLayer.RoadNet(),
+                    ],
+                });
+                map.addControl(new AMap.Scale());
+            })
+            .catch((e) => {
+                console.error(e);
             });
-            map.addControl(new AMap.Scale());
-        }).catch((e) => {
-            console.error(e);
-        });
     </script>
     <script type="text/javascript">
         function refreshWeatherData(weatherData) {
@@ -310,7 +414,7 @@
             setValueStatus($("#screenPowerValue"), hangarData.screenPower);
             setValueStatus($("#speakerPowerValue"), hangarData.speakerPower);
             setValueStatus($("#driverPowerValue"), hangarData.driverPower);
-        };
+        }
 
         function setFlightMode(mode) {
             switch (mode) {
@@ -443,7 +547,7 @@
                 case 255:
                 default:
                     $("#flightModeValue").html("未知");
-            };
+            }
         }
 
         function refreshFlightData(flightData) {
@@ -475,7 +579,7 @@
         function refreshTextData(textData) {
             var logPanel = $("#logContainer ul");
             for (var i = 0, len = textData.length; i < len; i++) {
-                logPanel.html(logPanel.html() + "<li>" + textData[i].text + "</li>");
+                logPanel.html(logPanel.html() + "<li>[" + textData[i].time + "] " + textData[i].text + "</li>");
             }
         }
 
@@ -494,15 +598,15 @@
             var line = new AMap.Polyline({
                 path: path,
                 isOutline: true,
-                outlineColor: '#FF0000',
+                outlineColor: "#FF0000",
                 borderWeight: 3,
                 strokeColor: "#FF0000",
                 strokeOpacity: 1,
                 strokeWeight: 3,
                 strokeStyle: "solid",
                 strokeDasharray: [10, 5],
-                lineJoin: 'round',
-                lineCap: 'round',
+                lineJoin: "round",
+                lineCap: "round",
                 zIndex: 50,
             });
             polylines.push(line);
@@ -534,9 +638,9 @@
             }
             var icon = new AMap.Icon({
                 size: new AMap.Size(36, 36),
-                image: './resources/images/aircraft.png',
+                image: "./resources/images/aircraft.png",
                 imageOffset: new AMap.Pixel(0, 0),
-                imageSize: new AMap.Size(36, 36)
+                imageSize: new AMap.Size(36, 36),
             });
             var marker = new AMap.Marker({
                 position: new AMap.LngLat(lon, lat),
@@ -559,27 +663,33 @@
                 alert("密码应为长度为6的字符");
                 return;
             }
-            Ajax.post("/login", {
-                "username": $("#username").val(),
-                "password": $("#password").val()
-            }, function (response) {
-                if (response.code == "0") {
-                    $("#header .connection_status").html("已连接");
-                } else {
-                    $("#header .connection_status").html("未连接");
-                    alert(response.message);
+            Ajax.post(
+                "/login", {
+                    username: $("#username").val(),
+                    password: $("#password").val(),
+                },
+                function (response) {
+                    if (response.code == "0") {
+                        $("#header .connection_status").html("已连接");
+                    } else {
+                        $("#header .connection_status").html("未连接");
+                        alert(response.message);
+                    }
                 }
-            });
+            );
         }
 
         function loadWayPoint() {
-            Ajax.post("/aircrafts/loadWayPoint", {
-                "code": $("#wayPoint").val(),
-            }, function (response) {
-                if (response.code == "0") {} else {
-                    alert(response.message);
+            Ajax.post(
+                "/aircrafts/loadWayPoint", {
+                    code: $("#wayPoint").val(),
+                },
+                function (response) {
+                    if (response.code == "0") {} else {
+                        alert(response.message);
+                    }
                 }
-            });
+            );
         }
 
         function takeOff() {
