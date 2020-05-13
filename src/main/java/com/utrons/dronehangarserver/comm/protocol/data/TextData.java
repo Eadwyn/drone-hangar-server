@@ -5,6 +5,7 @@ import com.utrons.dronehangarserver.util.NumericUtil;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 
 @Data
 public class TextData implements Serializable {
@@ -23,7 +24,11 @@ public class TextData implements Serializable {
 
 		byte[] text = new byte[request.getPkgLength() - 22];
 		System.arraycopy(data, 19, text, 0, text.length);
-		obj.setText(new String(text));
+		try {
+			obj.setText(new String(text, "GBK"));
+		} catch (UnsupportedEncodingException e) {
+			// ignore
+		}
 		return obj;
 	}
 }
