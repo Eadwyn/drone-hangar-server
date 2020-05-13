@@ -14,13 +14,13 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class MainApplication {
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(MainApplication.class)
-				.beanNameGenerator(new CustomGenerator())
+				.beanNameGenerator(new CustomBeanNameGenerator())
 				.run(args);
 //		SpringApplication.run(MainApplication.class, args);
 		init();
 	}
 
-	public static class CustomGenerator implements BeanNameGenerator {
+	public static class CustomBeanNameGenerator implements BeanNameGenerator {
 		@Override
 		public String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry) {
 			return definition.getBeanClassName();
