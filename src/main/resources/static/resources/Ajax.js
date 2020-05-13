@@ -1,7 +1,7 @@
 var Ajax = {
     post: function (url, data, callback) {
         $.ajax({
-            url: "http://localhost:8071" + url,
+            url: "http://112.74.216.37:8071" + url,
             type: "POST",
             contentType: "application/json",
             dataType: "json",
