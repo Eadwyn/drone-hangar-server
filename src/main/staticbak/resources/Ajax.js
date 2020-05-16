@@ -17,7 +17,7 @@ var Ajax = {
             },
             error: function (ajaxobj) {
                 if (ajaxobj.responseText != '') {
-                    console.log(ajaxobj.responseText);
+                    /* console.log(ajaxobj.responseText);*/
                 }
             }
         });

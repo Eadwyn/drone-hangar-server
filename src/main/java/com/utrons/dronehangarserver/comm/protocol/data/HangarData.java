@@ -3,9 +3,11 @@ package com.utrons.dronehangarserver.comm.protocol.data;
 import com.utrons.dronehangarserver.comm.protocol.request.ProtocolRequest;
 import com.utrons.dronehangarserver.util.NumericUtil;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 
+@Slf4j
 @Data
 public class HangarData implements Serializable {
 
@@ -27,13 +29,13 @@ public class HangarData implements Serializable {
 	/** 【U8】充电电源，0-关闭，1-打开 */
 	private boolean isChargerPowerOn;
 	/** 【U8】射频电源，0-关闭，1-打开 */
-	private boolean isRFPowerOn;
+	private boolean isRfPowerOn;
 	/** 【U8】摄像头电源，0-关闭，1-打开 */
 	private boolean isCameraPowerOn;
 	/** 【U8】遥控电源，0-关闭，1-打开 */
 	private boolean isRemotePowerOn;
 	/** 【U8】RTK 基站电源，0-关闭，1-打开 */
-	private boolean isRTKPowerOn;
+	private boolean isRtkPowerOn;
 	/** 【U8】显示电源，0-关闭，1-打开 */
 	private boolean isScreenPowerOn;
 	/** 【U8】喊话器电源，0-关闭，1-打开 */
@@ -53,10 +55,10 @@ public class HangarData implements Serializable {
 		obj.setOutLampOn(NumericUtil.getUnSigned8(data[6]) == 1 ? true : false);
 		obj.setHangarPowerOn(NumericUtil.getUnSigned8(data[7]) == 1 ? true : false);
 		obj.setChargerPowerOn(NumericUtil.getUnSigned8(data[8]) == 1 ? true : false);
-		obj.setRFPowerOn(NumericUtil.getUnSigned8(data[9]) == 1 ? true : false);
+		obj.setRfPowerOn(NumericUtil.getUnSigned8(data[9]) == 1 ? true : false);
 		obj.setCameraPowerOn(NumericUtil.getUnSigned8(data[10]) == 1 ? true : false);
 		obj.setRemotePowerOn(NumericUtil.getUnSigned8(data[11]) == 1 ? true : false);
-		obj.setRTKPowerOn(NumericUtil.getUnSigned8(data[12]) == 1 ? true : false);
+		obj.setRtkPowerOn(NumericUtil.getUnSigned8(data[12]) == 1 ? true : false);
 		obj.setScreenPowerOn(NumericUtil.getUnSigned8(data[13]) == 1 ? true : false);
 		obj.setSpeakerPowerOn(NumericUtil.getUnSigned8(data[14]) == 1 ? true : false);
 		obj.setDriverPowerOn(NumericUtil.getUnSigned8(data[15]) == 1 ? true : false);
