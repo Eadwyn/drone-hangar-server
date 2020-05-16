@@ -49,4 +49,5 @@
 -keepclassmembers class * {
     *** get*();
     void set*(***);
+    boolean is*();
 }
