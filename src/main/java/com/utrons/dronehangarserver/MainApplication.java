@@ -4,6 +4,7 @@ import com.utrons.dronehangarserver.comm.TCPClientHelper;
 import com.utrons.dronehangarserver.thread.CommReceivedHandlerThread;
 import com.utrons.dronehangarserver.thread.CommReceiverThread;
 import com.utrons.dronehangarserver.thread.CommSenderThread;
+import com.utrons.dronehangarserver.thread.HttpSessionCleannerThread;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanNameGenerator;
@@ -31,6 +32,7 @@ public class MainApplication {
 		CommReceivedHandlerThread.getInstance().start();
 		CommReceiverThread.getInstance().start();
 		CommSenderThread.getInstance().start();
+		HttpSessionCleannerThread.getInstance().start();
 		TCPClientHelper.connect();
 	}
 }

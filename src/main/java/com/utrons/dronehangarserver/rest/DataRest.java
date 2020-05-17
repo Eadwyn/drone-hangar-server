@@ -1,5 +1,6 @@
 package com.utrons.dronehangarserver.rest;
 
+import com.utrons.dronehangarserver.model.AppData;
 import com.utrons.dronehangarserver.model.GetAllDataResponse;
 import com.utrons.dronehangarserver.model.request.EmptyRequest;
 import com.utrons.dronehangarserver.model.response.ResponseHelper;
@@ -12,13 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/data")
-public class DataRest {
+public class DataRest extends BaseRest {
 	@Autowired
 	private DataService dataService;
 
 	@PostMapping("/getAll")
 	public ResponseHelper<GetAllDataResponse> getAll(@RequestBody EmptyRequest request) {
-		GetAllDataResponse data = this.dataService.getAll();
+		AppData.getInstance().addClient(this.getSession());
+		GetAllDataResponse data = this.dataService.getAll(this.getSession().getId());
 		return ResponseHelper.newSuccess(data);
 	}
 }

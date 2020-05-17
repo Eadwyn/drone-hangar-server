@@ -11,7 +11,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Vector;
+import javax.servlet.http.HttpSession;
+import java.util.*;
 
 @Slf4j
 @Data
@@ -23,7 +24,8 @@ public class AppData {
 	private WeatherData weatherData = new WeatherData();
 
 	@Setter(AccessLevel.NONE)
-	private Vector<TextData> textData = new Vector<>();
+	private Map<String, WebClientData> clients = new HashMap<>();
+
 	private byte[] username = new byte[6];
 	private byte[] password = new byte[6];
 
@@ -47,13 +49,50 @@ public class AppData {
 		return instance;
 	}
 
-	public void addTextData(TextData textData) {
-		this.textData.add(textData);
-		this.log(this.textData);
+	public void addClient(HttpSession session) {
+		synchronized (this.clients) {
+			if (null != clients.get(session.getId())) {
+				return;
+			}
+			this.clients.put(session.getId(), new WebClientData(session, new Vector<TextData> ()));
+		}
 	}
 
-	public void clearTextData() {
-		this.textData.clear();
+	public void clearClients() {
+		String key = null;
+		HttpSession session = null;
+		synchronized (this.clients) {
+			Iterator<String> iterator = this.clients.keySet().iterator();
+			while (iterator.hasNext()) {
+				key = iterator.next();
+				session = this.clients.get(key).getSession();
+				if ((session.getLastAccessedTime() + 600000) <= new Date().getTime()) {
+					this.clients.remove(key);
+				}
+			}
+		}
+	}
+
+	public void addTextData(TextData textData) {
+		synchronized (clients) {
+			for (WebClientData data: clients.values()) {
+				data.getTextData().add(textData);
+			}
+		}
+	}
+
+	public List<TextData> getTextData(String sessionId) {
+		List<TextData> data = new ArrayList<>();
+		synchronized (clients) {
+			WebClientData clientData = this.clients.get(sessionId);
+			if (null == clientData) {
+				return data;
+			} else {
+				data.addAll(clientData.getTextData());
+				clientData.getTextData().clear();
+			}
+		}
+		return data;
 	}
 
 	//region 航线
