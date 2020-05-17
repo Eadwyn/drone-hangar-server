@@ -62,11 +62,11 @@ public class FlightData implements Serializable {
 
 	//region 飞行状态
 	/** RTK连接状态 */
-	private boolean isRTKConnected;
+	private boolean isRtkConnected;
 	/** 飞行模式 */
 	private int flightMode;
 	/** 马达状态 */
-	private boolean areMotorsOn = false;
+	private boolean isMotorsOn = false;
 	/** 航点就绪 */
 	private boolean isWayPointReady = false;
 	/** 充电状态 */
@@ -129,7 +129,7 @@ public class FlightData implements Serializable {
 			case 5:
 				break;
 			case 7:
-				this.isRTKConnected = true;
+				this.isRtkConnected = true;
 				break;
 		}
 	}
@@ -145,7 +145,7 @@ public class FlightData implements Serializable {
 		int wayPointReady = (high >>> 1) & 0x01; // 点就绪 1 bool 0-航点未上传成功，1-航点已上传成功
 		int beingCharged = (high >>> 2) & 0x01; // 充电状态 1 bool 0-用电模式，1-充电模式
 
-		this.areMotorsOn = motors == 1 ? true : false;
+		this.isMotorsOn = motors == 1 ? true : false;
 		this.isWayPointReady = wayPointReady == 1 ? true : false;
 		this.isBeingCharged = beingCharged == 1 ? true : false;
 	}

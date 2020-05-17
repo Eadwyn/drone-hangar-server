@@ -7,7 +7,11 @@ function refreshWeatherData(weatherData) {
 	$("#temperatureValue").html(weatherData.temperature);
 	$("#humidityValue").html(weatherData.humidity);
 	$("#lightValue").html(weatherData.light);
-	$("#rainValue").html(weatherData.rain);
+	if (weatherData.rain) {
+		$("#rainValue").html("有雨");
+	} else {
+		$("#rainValue").html("无雨");
+	}
 }
 
 function refreshHangarData(hangarData) {
@@ -229,10 +233,27 @@ function refreshFlightData(flightData) {
 	$("#xxxxxxcameraFoceValuexx").html(flightData.cameraFoce);
 	$("#cameraStatusValue").html(flightData.cameraStatus);
 	setFlightMode(flightData.flightMode);
-	$("#rtkConnectedValue").html(flightData.rtkConnected);
-	$("#motorsValue").html(flightData.motors);
-	$("#wayPointReadyValue").html(flightData.wayPointReady);
-	$("#beingChargedValue").html(flightData.beingCharged);
+	if (flightData.rtkConnected) {
+		$("#rtkConnectedValue").html("已连接");
+	} else {
+		$("#rtkConnectedValue").html("未连接");
+	}
+	if (flightData.motorsOn) {
+		$("#motorsValue").html("开");
+	} else {
+		$("#motorsValue").html("关");
+	}
+	if (flightData.wayPointReady) {
+		$("#wayPointReadyValue").html("是");
+	} else {
+		$("#wayPointReadyValue").html("否");
+	}
+
+	if (flightData.beingCharged) {
+		$("#beingChargedValue").html("充电模式");
+	} else {
+		$("#beingChargedValue").html("用电模式");
+	}
 	setPosition(flightData.longitude, flightData.latitude);
 }
 
