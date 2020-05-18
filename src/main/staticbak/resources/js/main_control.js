@@ -20,7 +20,7 @@ function landing() {
 }
 
 function returnHome() {
-	Ajax.post("/aircrafts/returnHone", {});
+	Ajax.post("/aircrafts/returnHome", {});
 }
 
 function pause() {

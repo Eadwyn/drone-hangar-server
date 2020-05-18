@@ -233,13 +233,13 @@
             飞行距离：<span id="distanceValue">未知</span>m
         </div>
         <div class="valuePanel">
-            东向速度：<span id="eastSpeedValue">未知</span>deg
+            东向速度：<span id="eastSpeedValue">未知</span>m/s
         </div>
         <div class="valuePanel">
-            北向速度：<span id="northSpeedValue">未知</span>deg
+            北向速度：<span id="northSpeedValue">未知</span>m/s
         </div>
         <div class="valuePanel">
-            垂直速度：<span id="upSpeedValue">未知</span>deg
+            垂直速度：<span id="upSpeedValue">未知</span>m/s
         </div>
         <div class="valuePanel">
             定位模式：<span id="fixTypeValue">未知</span>
@@ -282,6 +282,13 @@
                 <option value="1">1号航线</option>
                 <option value="2">2号航线</option>
                 <option value="3">3号航线</option>
+            </select>
+        </div>
+        <div>
+            <select id="videoSelect">
+                <option value="1">外置摄像头</option>
+                <option value="2">内置摄像头</option>
+                <option value="3" selected>无人机视频</option>
             </select>
         </div>
         <button id="btnLoadWaypoint" class="controllBtn">加载航线</button>

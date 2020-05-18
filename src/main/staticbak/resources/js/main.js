@@ -40,4 +40,5 @@ $(function () {
 	$("#btnHangarStart").bind("click", hangarStart);
 	$("#btnHangerStop").bind("click", hangerStop);
 	$("#btnHangarSleep").bind("click", hangarSleep);
+	$("#videoSelect").bind("change", changeVideoSrc);
 });
